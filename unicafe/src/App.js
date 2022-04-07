@@ -48,10 +48,10 @@ const App = () => {
 
 const Button = ({onClick, text}) => <><button onClick={onClick}>{text}</button></>
 
-const Statistic = (props) => {
+const Statistic = ({name, number}) => {
   return (
     <>
-      <p>{props.name} {props.number}</p>
+      <p>{name} {number}</p>
     </>
   )
 }
