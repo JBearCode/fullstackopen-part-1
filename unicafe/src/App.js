@@ -48,21 +48,24 @@ const NoStats = () => <><p>Please cast a vote to view voting statistics</p></>;
 
 const AllStats = ({good, bad, neutral, all, getAverage, getPercent}) => {
   return (
-  <>
-  <Statistic name="Good" number={good}/>
-  <Statistic name="Neutral" number={neutral}/>
-  <Statistic name="Bad" number={bad}/>
-  <Statistic name="All" number={all}/>
-  <Statistic name="Average" number={getAverage(good, neutral, bad, all)}/>
-  <Statistic name="Positive" number={getPercent(good, all)}/>
-  </>
+  <table>
+    <tbody>
+    <tr><Statistic name="Good" number={good}/></tr>
+    <tr><Statistic name="Neutral" number={neutral}/></tr>
+    <tr><Statistic name="Bad" number={bad}/></tr>
+    <tr><Statistic name="All" number={all}/></tr>
+    <tr><Statistic name="Average" number={getAverage(good, neutral, bad, all)}/></tr>
+    <tr><Statistic name="Positive" number={getPercent(good, all)}/></tr>
+    </tbody>
+  </table>
   )
 };
 
 const Statistic = ({name, number}) => {
   return (
     <>
-      <p>{name} {number}</p>
+      <td>{name}</td>
+      <td>{number}</td>
     </>
   )
 }
