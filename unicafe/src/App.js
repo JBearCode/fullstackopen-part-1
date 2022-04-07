@@ -8,6 +8,7 @@ const App = () => {
 
   const handleClickGood = () => {
     setGood(good + 1)
+    console.log("ran good click")
   }
 
   const handleClickNeutral = () => {
@@ -21,13 +22,25 @@ const App = () => {
   return (
     <div>
       <h1>Give Feedback</h1>
-      <Button onclick={handleClickGood} text="Good"/>
-      <Button onclick={handleClickNeutral} text="Neutral"/>
-      <Button onclick={handleClickBad} text="Bad"/>
+      <Button onClick={handleClickGood} text="Good"/>
+      <Button onClick={handleClickNeutral} text="Neutral"/>
+      <Button onClick={handleClickBad} text="Bad"/>
+      <h1>Statistics</h1>
+      <Statistic name="Good" number={good}/>
+      <Statistic name="Neutral" number={neutral}/>
+      <Statistic name="Bad" number={bad}/>
     </div>
   )
 }
 
 const Button = ({onClick, text}) => <><button onClick={onClick}>{text}</button></>
+
+const Statistic = (props) => {
+  return (
+    <>
+      <p>{props.name} {props.number}</p>
+    </>
+  )
+}
 
 export default App
