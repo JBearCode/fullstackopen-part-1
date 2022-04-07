@@ -36,17 +36,26 @@ const App = () => {
       <Button onClick={handleClickNeutral} text="Neutral"/>
       <Button onClick={handleClickBad} text="Bad"/>
       <h1>Statistics</h1>
-      <Statistic name="Good" number={good}/>
-      <Statistic name="Neutral" number={neutral}/>
-      <Statistic name="Bad" number={bad}/>
-      <Statistic name="All" number={all}/>
-      <Statistic name="Average" number={getAverage(good, neutral, bad, all)}/>
-      <Statistic name="Positive" number={getPercent(good, all)}/>
+      {all === 0 &&
+        <NoStats/>
+      }
+      {all !== 0 &&
+        <div>
+          <Statistic name="Good" number={good}/>
+          <Statistic name="Neutral" number={neutral}/>
+          <Statistic name="Bad" number={bad}/>
+          <Statistic name="All" number={all}/>
+          <Statistic name="Average" number={getAverage(good, neutral, bad, all)}/>
+          <Statistic name="Positive" number={getPercent(good, all)}/>
+        </div>
+      }
     </div>
   )
 }
 
 const Button = ({onClick, text}) => <><button onClick={onClick}>{text}</button></>
+
+const NoStats = () => <><p>Please cast a vote to view voting statistics</p></>;
 
 const Statistic = ({name, number}) => {
   return (
