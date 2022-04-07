@@ -10,31 +10,35 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
-   
-  const getRandomIndex = (array) => Math.floor(Math.random() * array.length);
 
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
+  console.log(votes);
+   
   const [selected, setSelected] = useState(0);
 
-  const handleButtonClick = (array, oldSelected) => {
+  const handleRefreshClick = (array) => {
     setSelected(Math.floor(Math.random() * array.length));
+  }
+
+  const handleVoteClick = (selected) => {
+    console.log(selected);
+    const newVotes = [...votes];
+    newVotes[selected] += 1
+    setVotes(newVotes);
   }
 
   return (
     <div>
-    <div>{anecdotes[selected]}</div>
-    <Button name="Refresh" onClick={() => handleButtonClick(anecdotes, selected)}/>
-    </div>
-  )
-
-  
-}
-
-const Button = ({name, onClick}) => {
-  return (
+    <p>{anecdotes[selected]}</p>
+    <p>{votes[selected]} Votes</p>
     <div>
-      <button type="button" onClick={onClick}>{name}</button> 
+    <Button name="Vote" onClick={() => handleVoteClick(selected)}/>
+    <Button name="Read Another Anecdote" onClick={() => handleRefreshClick(anecdotes, selected)}/>
+    </div>
     </div>
   )
 }
+
+const Button = ({name, onClick}) => <><button type="button" onClick={onClick}>{name}</button></>
 
 export default App
